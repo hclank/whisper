@@ -1,6 +1,7 @@
 groq
 pynput
 pyperclip
+python-dotenv
+PyQt6
 sounddevice
 soundfile
-dotenv

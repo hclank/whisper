@@ -82,6 +82,14 @@ def process_audio():
         print("Ready for next dictation.")
 
 
+def should_stop(key):
+    if key == keyboard.Key.esc:
+        return True
+    if hasattr(key, "char") and key.char and key.char.lower() == "q":
+        return True
+    return False
+
+
 def inject_text(text):
     old_clipboard = pyperclip.paste()
     pyperclip.copy(text)
@@ -135,7 +143,7 @@ def on_release(key):
             is_recording = False
             threading.Thread(target=process_audio).start()
 
-    if key == keyboard.Key.esc:
+    if should_stop(key):
         print("Exiting...")
         return False
 
@@ -144,7 +152,7 @@ if __name__ == "__main__":
     print("Dictation script running.")
     print("Press and hold Control + Shift to record.")
     print("Release either key to process and paste.")
-    print("Press ESC to quit.")
+    print("Press Q or ESC to quit.")
 
     stream = sd.InputStream(samplerate=SAMPLE_RATE, channels=1, callback=audio_callback)
     with stream:

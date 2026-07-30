@@ -3,3 +3,4 @@ pynput
 pyperclip
 sounddevice
 soundfile
+dotenv

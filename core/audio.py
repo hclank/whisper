@@ -2,7 +2,7 @@ import queue
 import sounddevice as sd
 
 
-class AudioProcessor:
+class AudioRecorder:
     def __init__(self, sample_rate=16000):
         self.sample_rate = sample_rate
         self.is_recording = False

@@ -2,11 +2,14 @@ import os
 import soundfile as sf
 import numpy as np
 from groq import Groq
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 class GroqTranscriber:
     def __init__(self, sample_rate=16000):
-        self.client = Groq()
+        self.client = Groq(api_key=os.getenv("GROQ_API_KEY"))
         self.sample_rate = sample_rate
         self.temp_file = "temp_dictation.wav"
 
